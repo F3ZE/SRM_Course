@@ -93,10 +93,14 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
+    HAL_Delay(2000); // delay for 3s
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
     HAL_Delay(1000); // delay for 1s
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
     HAL_Delay(1000); // delay for 1s
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
+    HAL_Delay(3000); // delay for 3s
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
