@@ -1,0 +1,49 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            //这里构建build任务
+            "label": "build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                //此处为编译选项
+                "${fileDirname}\\*.c",
+                "-o",
+                //把源代码编译为对应exe文件,
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-g",
+                "-Wall", //获取警告
+                "-static-libgcc",
+                "-fexec-charset=GBK" //按GBK编码
+            ],
+            "group": {
+                //把该任务放在build组中
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                //配置build任务的终端相关
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared" //是否每次都重新开启一个终端
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            //这里配置run任务
+            "label": "run",
+            "type": "shell",
+            "dependsOn": "build",
+            "command": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "presentation": {
+                //同理配置终端
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            }
+        }
+    ]
+}
