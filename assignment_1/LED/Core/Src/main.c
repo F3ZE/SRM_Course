@@ -111,7 +111,7 @@ int main(void)
     for (int i = 0; i < 1000; i++)
     {
       __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1, i);
-      HAL_Delay(0); // 3ms
+      HAL_Delay(0); // 1ms
     }
 
     /* USER CODE END WHILE */
