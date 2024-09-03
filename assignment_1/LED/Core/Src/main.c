@@ -103,15 +103,15 @@ int main(void)
     // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
     // HAL_Delay(3000);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-    for (int i = 1000-1; i >= 0; i--)
+    for (int i = 1000 - 1; i >= 0; i--)
     {
       __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1, i);
-      HAL_Delay(2);
+      HAL_Delay(0);
     }
     for (int i = 0; i < 1000; i++)
     {
       __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1, i);
-      HAL_Delay(2);
+      HAL_Delay(0); // 3ms
     }
 
     /* USER CODE END WHILE */
