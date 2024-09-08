@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -54,6 +55,56 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void LED_ON()
+{
+  HAL_UART_Transmit(&huart1, "LED ON\r\n", sizeof("LED ON\r\n"), 100);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
+  HAL_Delay(0);
+}
+void LED_OFF()
+{
+  HAL_UART_Transmit(&huart1, "LED OFF\r\n", sizeof("LED OFF\r\n"), 100);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
+  HAL_Delay(0);
+}
+void LED_Breath()
+{
+  HAL_UART_Transmit(&huart1, "LED Breathing\r\n", sizeof("LED Breathing\r\n"), 100);
+  HAL_Delay(0);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  for (int i = 1000 - 1; i >= 0; i--)
+  {
+    __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1, i);
+    HAL_Delay(0);
+  }
+  for (int i = 0; i < 1000; i++)
+  {
+    __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1, i);
+    HAL_Delay(0); // 1ms
+  }
+}
+uint8_t buf[10];
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+
+  if (huart == &huart1)
+  {
+    switch (buf[0])
+    {
+    case 'O':
+      LED_ON();
+      break;
+    case 'F':
+      LED_OFF();
+      break;
+    case 'B':
+      LED_Breath();
+      break;
+    default:
+      break;
+    }
+  }
+}
 
 /* USER CODE END 0 */
 
@@ -86,6 +137,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM1_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -94,25 +146,10 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
-    // HAL_Delay(2000);
-    // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-    // HAL_Delay(1000);
-    // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
-    // HAL_Delay(1000);
-    // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-    // HAL_Delay(3000);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-    for (int i = 1000 - 1; i >= 0; i--)
-    {
-      __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1, i);
-      HAL_Delay(0);
-    }
-    for (int i = 0; i < 1000; i++)
-    {
-      __HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1, i);
-      HAL_Delay(0); // 1ms
-    }
+
+    // UART LED
+    HAL_UART_Receive_IT(&huart1, buf, sizeof(buf));
+    HAL_Delay(100);
 
     /* USER CODE END WHILE */
 

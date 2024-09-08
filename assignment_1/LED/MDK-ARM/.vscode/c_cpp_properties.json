@@ -3,14 +3,14 @@
         {
             "name": "LED",
             "includePath": [
-                "h:\\SRM_Course\\assignment_1\\LED\\Core\\Inc",
-                "h:\\SRM_Course\\assignment_1\\LED\\Drivers\\STM32F1xx_HAL_Driver\\Inc",
-                "h:\\SRM_Course\\assignment_1\\LED\\Drivers\\STM32F1xx_HAL_Driver\\Inc\\Legacy",
-                "h:\\SRM_Course\\assignment_1\\LED\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Include",
-                "h:\\SRM_Course\\assignment_1\\LED\\Drivers\\CMSIS\\Include",
-                "h:\\SRM_Course\\assignment_1\\LED\\MDK-ARM",
-                "h:\\SRM_Course\\assignment_1\\LED\\Core\\Src",
-                "h:\\SRM_Course\\assignment_1\\LED\\Drivers\\STM32F1xx_HAL_Driver\\Src"
+                "h:\\dev\\SRM_Course\\assignment_1\\LED\\Core\\Inc",
+                "h:\\dev\\SRM_Course\\assignment_1\\LED\\Drivers\\STM32F1xx_HAL_Driver\\Inc",
+                "h:\\dev\\SRM_Course\\assignment_1\\LED\\Drivers\\STM32F1xx_HAL_Driver\\Inc\\Legacy",
+                "h:\\dev\\SRM_Course\\assignment_1\\LED\\Drivers\\CMSIS\\Device\\ST\\STM32F1xx\\Include",
+                "h:\\dev\\SRM_Course\\assignment_1\\LED\\Drivers\\CMSIS\\Include",
+                "h:\\dev\\SRM_Course\\assignment_1\\LED\\MDK-ARM",
+                "h:\\dev\\SRM_Course\\assignment_1\\LED\\Core\\Src",
+                "h:\\dev\\SRM_Course\\assignment_1\\LED\\Drivers\\STM32F1xx_HAL_Driver\\Src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

@@ -3,6 +3,7 @@
 "led\main.o"
 "led\gpio.o"
 "led\tim.o"
+"led\usart.o"
 "led\stm32f1xx_it.o"
 "led\stm32f1xx_hal_msp.o"
 "led\stm32f1xx_hal_gpio_ex.o"
@@ -18,6 +19,7 @@
 "led\stm32f1xx_hal_flash.o"
 "led\stm32f1xx_hal_flash_ex.o"
 "led\stm32f1xx_hal_exti.o"
+"led\stm32f1xx_hal_uart.o"
 "led\system_stm32f1xx.o"
 --strict --scatter "LED\LED.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
